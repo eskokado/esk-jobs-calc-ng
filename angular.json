@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "esk-jobs-calc-ng"
+    }
+  },
+  "defaultProject": "esk-jobs-calc-ng",
+  "cli": {
+    "analytics": false
+  }
 }
