@@ -9,9 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { JobComponent } from './pages/job/job.component';
 import { HeaderPageComponent } from './partials/header-page/header-page.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { JobEditComponent } from './pages/job-edit/job-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, JobComponent, HeaderPageComponent, ProfileComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, JobComponent, HeaderPageComponent, ProfileComponent, JobEditComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
