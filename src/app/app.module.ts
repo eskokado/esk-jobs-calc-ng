@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { JobComponent } from './pages/job/job.component';
+import { HeaderPageComponent } from './partials/header-page/header-page.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, JobComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, JobComponent, HeaderPageComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
