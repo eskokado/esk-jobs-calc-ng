@@ -26,9 +26,7 @@
               "src/assets/styles/partials/page-header.css",
               "src/assets/styles/partials/cards.css",
               "src/assets/styles/partials/buttons.css",
-              "src/assets/styles/partials/modal.css",
-              "src/assets/styles/partials/animations.css",
-              "src/assets/styles/pages/index.css"
+              "src/assets/styles/partials/animations.css"
             ],
             "scripts": ["src/assets/scripts/index.js"]
           },
