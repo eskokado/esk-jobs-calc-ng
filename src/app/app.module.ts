@@ -10,11 +10,21 @@ import { JobComponent } from './pages/job/job.component';
 import { HeaderPageComponent } from './partials/header-page/header-page.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { JobEditComponent } from './pages/job-edit/job-edit.component';
+import { JobService } from './services/JobService';
+import { ProfileService } from './services/ProfileService';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, JobComponent, HeaderPageComponent, ProfileComponent, JobEditComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    JobComponent,
+    HeaderPageComponent,
+    ProfileComponent,
+    JobEditComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  providers: [ProfileService, JobService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
