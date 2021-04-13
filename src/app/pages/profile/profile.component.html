@@ -1,21 +1,18 @@
 <app-header-page title="Editar Profile"></app-header-page>
-<div class="container animate-up delay-2">
+<div class="container animate-up delay-2" *ngIf="profile">
   <aside class="card">
-    <img
-      src="https://avatars.githubusercontent.com/u/17316392?s=460&u=6912a91a70bc89745a2079fdcdad3bc3ce370f13&v=4"
-      alt="Jakeliny"
-    />
-    <h2>Jakeliny</h2>
+    <img src="{{ profile.avatar }}" alt="{{ profile.name }}" />
+    <h2>{{ profile.name }}</h2>
     <p>
       O valor da sua hora é <br />
-      <strong>R$ 75,00</strong>
+      <strong>R$ {{ profile.value_hour }}</strong>
     </p>
     <button class="button green" form="form-profile" type="submit">
       Salvar dados
     </button>
   </aside>
   <main>
-    <form id="form-profile">
+    <form id="form-profile" (ngSubmit)="saveProfile()">
       <fieldset>
         <legend>Dados do perfil</legend>
         <div class="separator light"></div>
@@ -23,7 +20,12 @@
         <div class="input-group">
           <div class="input-wrapper">
             <label for="name">Nome</label>
-            <input type="text" id="name" name="name" />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              [(ngModel)]="profile.name"
+            />
           </div>
 
           <div class="input-wrapper">
@@ -33,6 +35,7 @@
               type="url"
               id="avatar"
               name="avatar"
+              [(ngModel)]="profile.avatar"
             />
           </div>
         </div>
@@ -51,8 +54,9 @@
               type="amount"
               step="0.1"
               id="monthly-budget"
-              name="monthly-budget"
+              name="monthly_budget"
               placeholder="R$"
+              [(ngModel)]="profile.monthly_budget"
             />
           </div>
 
@@ -61,7 +65,12 @@
               >Quantas horas <br />
               quero trabalhar por dia?</label
             >
-            <input type="number" id="hours-per-day" name="hours-per-day" />
+            <input
+              type="number"
+              id="hours-per-day"
+              name="hours_per_day"
+              [(ngModel)]="profile.hours_per_day"
+            />
           </div>
         </div>
 
@@ -70,7 +79,12 @@
             <label for="days-per-week"
               >Quantos dias <br />quero trabalhar por semana?</label
             >
-            <input type="number" id="days-per-week" name="days-per-week" />
+            <input
+              type="number"
+              id="days-per-week"
+              name="days_per_week"
+              [(ngModel)]="profile.days_per_week"
+            />
           </div>
 
           <div class="input-wrapper">
@@ -81,7 +95,8 @@
             <input
               type="number"
               id="vacation-per-year"
-              name="vacation-per-year"
+              name="vacation_per_year"
+              [(ngModel)]="profile.vacation_per_year"
             />
           </div>
         </div>
