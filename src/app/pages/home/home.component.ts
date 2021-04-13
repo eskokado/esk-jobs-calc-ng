@@ -4,6 +4,7 @@ import { JobService } from 'src/app/services/JobService';
 
 import JobUtils from '../../utils/JobUtils.js';
 import { ProfileService } from 'src/app/services/ProfileService';
+import { Job } from 'src/app/models/job';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ import { ProfileService } from 'src/app/services/ProfileService';
 })
 export class HomeComponent implements OnInit {
   jobs = [];
+  @Output() job = {};
   @Output() profile: Profile;
 
   @Output() statusCount = {
@@ -65,6 +67,20 @@ export class HomeComponent implements OnInit {
     this.profileService.listProfiles().subscribe((data) => {
       this.profile = data[0];
       console.log(this.profile);
+    });
+  }
+
+  Edit(id: number) {
+    console.log('editing', id);
+    this.jobService.getJob(id).subscribe((data) => {
+      console.log(data);
+      const remaining = JobUtils.remainingDays(data);
+      this.job = {
+        ...data,
+        remaining,
+        status,
+        budget: JobUtils.calculateBudget(data, this.profile.value_hour),
+      };
     });
   }
 }

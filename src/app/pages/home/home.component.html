@@ -27,12 +27,20 @@
         <div class="status badge column">{{ job.status }}</div>
         <div class="actions column flex">
           <p class="sr-only">Ações</p>
-          <a href="job-edit" class="button white edit" title="Editar Job">
+          <a
+            [routerLink]="['/job-edit', job.id]"
+            class="button white edit"
+            title="Editar Job"
+          >
             <img src="/assets/images/edit-24.svg" alt="Editar Job" />
           </a>
-          <button class="delete button white" title="Excluir Job">
+          <a
+            [routerLink]="['/job-edit', job.id]"
+            class="delete button white"
+            title="Excluir Job"
+          >
             <img src="/assets/images/trash-24.svg" alt="Excluir Job" />
-          </button>
+          </a>
         </div>
       </div>
       <!-- end card -->
