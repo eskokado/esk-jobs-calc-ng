@@ -15,6 +15,8 @@ import { JobService } from './services/JobService';
 import { ProfileService } from './services/ProfileService';
 import { JobBudgetComponent } from './shared/job-budget/job-budget.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProfileComponent,
     JobEditComponent,
     JobBudgetComponent,
+    ConfirmDialogComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+  ],
   providers: [ProfileService, JobService],
   bootstrap: [AppComponent],
 })
