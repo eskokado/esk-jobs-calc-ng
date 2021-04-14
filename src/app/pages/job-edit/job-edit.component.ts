@@ -42,25 +42,15 @@ export class JobEditComponent implements OnInit {
     });
   }
 
-  saveJob() {
-    if (!this.job?.id) {
-      const myjob = this.job;
-      delete myjob.id;
-      this.jobService.createJob(myjob).subscribe((data) => {
-        console.log(data);
-        this.job = data;
-        this.budget = JobUtils.calculateBudget(data, this.profile.value_hour);
-      });
-    } else {
-      const id = this.job.id;
-      const myjob = this.job;
-      delete myjob.id;
-      console.log('this is being edited', myjob);
-      this.jobService.updateJob(id, myjob).subscribe((data) => {
-        console.log(data);
-        this.job = data;
-        this.budget = JobUtils.calculateBudget(data, this.profile.value_hour);
-      });
-    }
+  updateJob() {
+    const id = this.job.id;
+    const myjob = this.job;
+    delete myjob.id;
+    console.log('this is being edited', myjob);
+    this.jobService.updateJob(id, myjob).subscribe((data) => {
+      console.log(data);
+      this.job = data;
+      this.budget = JobUtils.calculateBudget(data, this.profile.value_hour);
+    });
   }
 }
