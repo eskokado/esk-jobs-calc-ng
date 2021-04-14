@@ -14,6 +14,7 @@ import { JobEditComponent } from './pages/job-edit/job-edit.component';
 import { JobService } from './services/JobService';
 import { ProfileService } from './services/ProfileService';
 import { JobBudgetComponent } from './shared/job-budget/job-budget.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { JobBudgetComponent } from './shared/job-budget/job-budget.component';
     JobEditComponent,
     JobBudgetComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule],
   providers: [ProfileService, JobService],
   bootstrap: [AppComponent],
 })
