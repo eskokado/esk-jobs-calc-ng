@@ -6,9 +6,9 @@ import JobUtils from '../../utils/JobUtils.js';
 @Component({
   selector: 'app-job-budget',
   template: `
-    <p>
-      O valor do projeto ficou em
-      <strong>R$ {{ budget }}</strong>
+    <p *ngIf="!budget">Preencha os dados ao lado para ver o valor do projeto</p>
+    <p *ngIf="budget">
+      O valor do projeto ficou em <strong>R$ {{ budget }}</strong>
     </p>
   `,
   styles: [],
@@ -24,10 +24,12 @@ export class JobBudgetComponent implements DoCheck {
   @Output() budgetEvent = new EventEmitter<number>();
 
   ngDoCheck(): void {
-    this.budget = JobUtils.calculateBudget(
-      this.job,
-      this.profile['value_hour']
-    );
-    this.budgetEvent.emit(this.budget);
+    if (this.profile) {
+      this.budget = JobUtils.calculateBudget(
+        this.job,
+        this.profile['value_hour']
+      );
+      this.budgetEvent.emit(this.budget);
+    }
   }
 }
