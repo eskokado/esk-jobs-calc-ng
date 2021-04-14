@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Job } from 'src/app/models/job.js';
 import { Profile } from 'src/app/models/profile';
 import { JobService } from 'src/app/services/JobService';
 import { ProfileService } from 'src/app/services/ProfileService.js';
-import JobUtils from '../../utils/JobUtils.js';
+import { JobBudgetComponent } from 'src/app/shared/job-budget/job-budget.component.js';
 
 @Component({
   selector: 'app-job-edit',
@@ -19,9 +19,14 @@ import JobUtils from '../../utils/JobUtils.js';
 })
 export class JobEditComponent implements OnInit {
   jobId;
+
   job: Job;
+
   profile: Profile;
   budget = 0.0;
+
+  @ViewChild(JobBudgetComponent) childView: JobBudgetComponent;
+
   constructor(
     private route: ActivatedRoute,
     private jobService: JobService,
@@ -38,8 +43,11 @@ export class JobEditComponent implements OnInit {
     this.jobService.getJob(this.jobId).subscribe((data) => {
       console.log(data);
       this.job = data;
-      this.budget = JobUtils.calculateBudget(data, this.profile.value_hour);
     });
+  }
+
+  setBudget(value: number) {
+    this.budget = value;
   }
 
   updateJob() {
@@ -50,7 +58,6 @@ export class JobEditComponent implements OnInit {
     this.jobService.updateJob(id, myjob).subscribe((data) => {
       console.log(data);
       this.job = data;
-      this.budget = JobUtils.calculateBudget(data, this.profile.value_hour);
     });
   }
 }

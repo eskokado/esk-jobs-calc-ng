@@ -13,6 +13,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { JobEditComponent } from './pages/job-edit/job-edit.component';
 import { JobService } from './services/JobService';
 import { ProfileService } from './services/ProfileService';
+import { JobBudgetComponent } from './shared/job-budget/job-budget.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProfileService } from './services/ProfileService';
     HeaderPageComponent,
     ProfileComponent,
     JobEditComponent,
+    JobBudgetComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [ProfileService, JobService],
