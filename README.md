@@ -6,6 +6,10 @@ O JobsCalc é uma aplicação de estimativa de cálculo para projetos freelancer
 
 ## [**Link para a EskJobsCalcApi da API**](https://github.com/eskokado/esk-jobs-calc-api)
 
+## Atualizar node modules
+
+Executar `npm install`
+
 ## Development server
 
 Executar `ng serve` para um dev server. Navegar para `http://localhost:4200/`.
