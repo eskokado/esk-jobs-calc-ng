@@ -13,6 +13,7 @@ import {
 export class ConfirmDialogComponent implements OnInit {
   title: string;
   message: string;
+  matDialogClose: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,

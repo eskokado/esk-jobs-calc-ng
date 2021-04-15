@@ -1,10 +1,11 @@
-import { Profile } from './../../models/profile';
 import { Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { JobService } from 'src/app/services/JobService';
 
 import JobUtils from '../../utils/JobUtils.js';
+import { Profile } from './../../models/profile';
 import { ProfileService } from 'src/app/services/ProfileService';
-import { Job } from 'src/app/models/job';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component.js';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private jobService: JobService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -81,6 +83,22 @@ export class HomeComponent implements OnInit {
         status,
         budget: JobUtils.calculateBudget(data, this.profile.value_hour),
       };
+    });
+  }
+
+  remove(id: number) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirme remover projeto',
+        message: 'Quer mesmo excluir esse job? Ele será apagado para sempre.',
+      },
+    });
+    confirmDialog.afterClosed().subscribe((action) => {
+      if (action === true) {
+        this.jobService.deleteJob(id).subscribe(() => {
+          this.displayJobs();
+        });
+      }
     });
   }
 }

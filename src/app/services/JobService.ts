@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Job } from '../models/job';
 
 @Injectable({
@@ -23,20 +23,21 @@ export class JobService {
   listJobs(): Observable<Job[]> {
     return this.http
       .get<Job[]>(this.jobsUrl, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   getJob(id): Observable<Job> {
+    console.log('Job', id);
     return this.http
       .get<Job>(`${this.jobsUrl}/${id}`)
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   createJob(myjob): Observable<Job> {
     console.log('trying to save', JSON.stringify(myjob));
     return this.http
       .post<Job>(this.jobsUrl, JSON.stringify(myjob), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   updateJob(id, myjob): Observable<Job> {
@@ -44,14 +45,14 @@ export class JobService {
     const url = `${this.jobsUrl}/${id}`;
     return this.http
       .put<Job>(url, JSON.stringify(myjob), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
-  deleteJob(id) {
+  deleteJob(id): Observable<{}> {
     const url = `${this.jobsUrl}/${id}`;
     return this.http
-      .delete<Job>(url, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
+      .delete(url, { ...this.httpOptions, responseType: 'text' })
+      .pipe(catchError(this.handleError));
   }
 
   // Error handling
